@@ -88,7 +88,7 @@ The following config are applied on Debian or
    ```
 3. Start installation into `$HOME` directory
    ```sh
-    sh nso-5.5.darwin.x86_64.installer.bin --local-install ~/nso-5.5
+    sh nso-5.5.linux.x86_64.installer.bin --local-install ~/nso-5.5
    ```
 4. Source **ncs** file
    ```sh
