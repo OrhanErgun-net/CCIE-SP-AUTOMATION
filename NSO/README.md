@@ -84,7 +84,7 @@ The following config are applied on Debian or
    ```
 2. Extract installation files
    ```sh
-   sh nso-5.5.darwin.x86_64.signed.bin 
+   sh nso-5.5.linux.x86_64.signed.bin
    ```
 3. Start installation into `$HOME` directory
    ```sh
