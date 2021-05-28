@@ -131,7 +131,7 @@ Check the latest `NEDs` version and release numbers, Cisco always updating it.
     ncs-setup --package ~/nso-5.3/packages/neds/cisco-ios-cli-6.69 \
       --package ~/nso-5.3/packages/neds/cisco-nx-cli-5.21 \
       --package ~/nso-5.3/packages/neds/cisco-iosxr-cli-7.33 \
-      --dest nso-instance-02
+      --dest nso-instance-02 --use-copy
    ```
 2. To start the created instance, navigate to **instance directory** and run
    ```sh
