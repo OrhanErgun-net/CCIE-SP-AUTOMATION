@@ -6,9 +6,6 @@
   <ol>
     <li>
       <a href="#about-nso">About NSO</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -22,6 +19,31 @@
       </ul>
     </li>
     <li><a href="#instance-setup">Instance Setup</a></li>
+      </ul>
+    </li>
+    <li>
+    <a href="#nso-cli">NSO CLI</a>
+      <ul>
+        <li><a href="#authentication-group">Authentication Group</a></li>
+      </ul>
+      <ul>
+        <li><a href="#add-device">Add Device</a></li>
+      </ul>
+      <ul>
+        <li><a href="#test-device-connectivity">Test Device Connectivity</a></li>
+      </ul>
+    </li>
+    <li>
+    <a href="#connect-and-select">Connect and Select</a>
+      <ul>
+        <li><a href="#check-packages">Check Packages</a></li>
+      </ul>
+      <ul>
+        <li><a href="show">Show Run</a></li>
+      </ul>
+      <ul>
+        <li><a href="#test-device-connectivity">Test Device Connectivity</a></li>
+      </ul>
   </ol>
 </details>
 
@@ -144,3 +166,86 @@ Check the latest `NEDs` version and release numbers, Cisco always updating it.
    ncs --status | grep status
    ```
 
+<!-- NSO CLI -->
+## NSO CLI
+
+You may enter NSO **CLI** from any where by 
+
+   ```sh
+   ncs_cli -C -u admin
+   ```
+
+
+### Authentication Group
+
+Used to place remote access **username** and **passwords** for targeted devices.
+
+  ```sh
+   devices authgroups group OE-NSO
+   default-map remote-name cisco
+   default-map remote-password cisco
+   default-map remote-secondary-password cisco
+  ```
+
+### Add Device
+
+When creating a device you will be placed under the created device **sub-mode**. Defining IP address, Protocol, and `NED`.
+
+  ```sh
+  devices device IOS-XE-01
+   address 192.168.96.62
+   authgroup OE
+   device-type cli ned-id cisco-ios-cli-6.69
+   device-type cli protocol ssh
+   ssh host-key-verification none
+   state admin-state unlocked
+   commit
+   ssh fetch-host-keys
+  ```
+
+### Test Device Connectivity
+
+Check device connectivity by using one of the following commands.
+
+  ```sh
+   devices device IOS-XE-01 sync-from
+   devices device IOS-XE-01 check-sync
+  ```
+
+<!-- Connect and Select -->
+## Connect and Select
+
+In this part troubleshooting and show command will be used. 
+
+
+
+### Check Packages
+
+For updating **NSO** packages `NEDs`.
+
+  ```sh
+  packages reload
+  show packages package package-version
+  show packages package oper-status
+  ```
+
+### Show Run
+
+The good old `show run` command can be used within *NSO CLI*
+
+  ```sh
+  show running-config devices device IOS-XE-01   
+  show running-config devices device IOS-XE-01 | de-select config
+  ```
+
+### Show Device Interfaces
+
+*NSO* CLI provides a rich subset of methods to **parse** the output
+
+  ```sh
+    show running-config devices device IOS-XE-01 config interface
+    show running-config devices device IOS-XE-01 config interface | display json
+    show running-config devices device IOS-XE-01 config interface | display xml
+    show running-config devices device IOS-XE-01 config interface Loopback * ip address
+
+  ```
