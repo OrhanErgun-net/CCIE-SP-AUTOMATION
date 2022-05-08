@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "6a514ab5-17f5-42d5-9d4d-c263b7845c16",
+		"name": "NSO-RESTCONF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create_SVI_Service",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"svi:vlan\": [\n        {\n            \"name\": \"IPTV\",\n            \"vlan-id\": 103,\n            \"device\": [\n                {\n                    \"name\": \"CE1\",\n                    \"ip-address\": \"10.0.0.0/24\",\n                    \"interface\": [\n                        {\n                            \"intf-type\": \"FastEthernet\",\n                            \"intf-id\": \"1/1\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}:{{PORT}}/restconf/data/tailf-ncs:services/",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"restconf",
+						"data",
+						"tailf-ncs:services",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Replace_SVI_Service",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"svi:vlan\": [\n        {\n            \"name\": \"IPTV\",\n            \"vlan-id\": 104,\n            \"device\": [\n                {\n                    \"name\": \"CE2\",\n                    \"ip-address\": \"10.0.0.0/24\",\n                    \"interface\": [\n                        {\n                            \"intf-type\": \"FastEthernet\",\n                            \"intf-id\": \"1/1\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}:{{PORT}}/restconf/data/tailf-ncs:services/svi:vlan=IPTV",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"restconf",
+						"data",
+						"tailf-ncs:services",
+						"svi:vlan=IPTV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Merge_SVI_Service",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"svi:vlan\": [\n        {\n            \"name\": \"IPTV\",\n            \"vlan-id\": 103,\n            \"device\": [\n                {\n                    \"name\": \"CE1\",\n                    \"ip-address\": \"10.0.0.0/24\",\n                    \"interface\": [\n                        {\n                            \"intf-type\": \"FastEthernet\",\n                            \"intf-id\": \"1/1\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}:{{PORT}}/restconf/data/tailf-ncs:services/svi:vlan=IPTV",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"restconf",
+						"data",
+						"tailf-ncs:services",
+						"svi:vlan=IPTV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_SVI_Service",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}:{{PORT}}/restconf/data/tailf-ncs:services/svi:vlan",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"restconf",
+						"data",
+						"tailf-ncs:services",
+						"svi:vlan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_SVI_Service",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}:{{PORT}}/restconf/data/tailf-ncs:services/svi:vlan=IPTV",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"restconf",
+						"data",
+						"tailf-ncs:services",
+						"svi:vlan=IPTV"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PROTOCOL",
+			"value": "HTTP",
+			"type": "string"
+		},
+		{
+			"key": "HOST",
+			"value": "127.0.0.1",
+			"type": "string"
+		},
+		{
+			"key": "PORT",
+			"value": "8080",
+			"type": "string"
+		}
+	]
+}
