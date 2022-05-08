@@ -1,0 +1,38 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0" servicepoint="vlan">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+    <device>
+      <name>{device/name}</name>
+      <config>
+        <vlan xmlns="urn:ios">
+          <vlan-list>
+            <id>{../vlan-id}</id>
+          </vlan-list>
+        </vlan>
+        <interface xmlns="urn:ios" foreach="{interface}">
+          <FastEthernet when="{intf-type = 'FastEthernet'}">
+            <name>{intf-id}</name>
+            <switchport>
+              <access>
+                <vlan>{../../vlan-id}</vlan>
+              </access>
+              <mode>
+                <access />
+              </mode>
+            </switchport>
+          </FastEthernet>
+          <GigabitEthernet when="{intf-type = 'GigabitEthernet'}">
+            <name>{intf-id}</name>
+            <switchport>
+              <access>
+                <vlan>{../../vlan-id}</vlan>
+              </access>
+              <mode>
+                <access />
+              </mode>
+            </switchport>
+          </GigabitEthernet>
+        </interface>
+      </config>
+    </device>
+  </devices>
+</config-template>
