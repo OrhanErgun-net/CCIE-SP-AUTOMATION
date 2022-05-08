@@ -1,0 +1,61 @@
+module loopback {
+
+    yang-version 1.1;
+
+    namespace "http://orhanergun.net/loopback";
+    prefix loopback;
+
+    import ietf-inet-types {
+        prefix inet;
+    }
+
+    import tailf-ncs {
+        prefix ncs;
+    }
+
+    import tailf-common {
+        prefix tailf;
+    }
+
+    augment "/ncs:services" {
+
+        list loopback {
+            key name;
+
+            unique "ip-address";
+
+            uses ncs:service-data;
+            ncs:servicepoint "loopback";
+
+            leaf name {
+                tailf:info "Service Instance Name";
+                type string;
+            }
+
+            leaf device {
+                tailf:info "Router Name";
+                type leafref {
+                    path "/ncs:devices/ncs:device/ncs:name";
+                }
+                mandatory true;
+            }
+
+            leaf loopback-intf {
+                tailf:info "Loopback Interface Id";
+                type uint32 {
+                    range "100..200";
+                }
+                mandatory true;
+            }
+
+            leaf ip-address {
+                tailf:info "Valid Loopback IP Address range from 10.100.0.0 to 10.199.255.255";
+                type inet:ipv4-address {
+                    pattern
+                      "10\\.1[0-9][0-9]\\.[0-9]+\\.[0-9]+";
+                }
+                mandatory true;
+            }
+        }
+    }
+}
