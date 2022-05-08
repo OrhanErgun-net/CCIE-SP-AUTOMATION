@@ -1,0 +1,89 @@
+module svi {
+
+    yang-version 1.1;
+    namespace "http://orhanergun.net/svi";
+    prefix svi;
+
+    import ietf-inet-types {
+        prefix inet;
+    }
+    import tailf-common {
+        prefix tailf;
+    }
+    import tailf-ncs {
+        prefix ncs;
+    }
+
+    description
+      "BSVI training package";
+
+    revision 2016-01-01 {
+        description
+          "Initial revision.";
+    }
+
+    augment "/ncs:services" {
+        list vlan {
+            tailf:info "Vlan Service";
+            key "name";
+            unique "vlan-id";
+
+            uses ncs:service-data;
+            ncs:servicepoint "svi-servicepoint";
+
+            leaf name {
+                tailf:info "Service Instance Name";
+                type string;
+            }
+
+            leaf vlan-id {
+                tailf:info "Unique Vlan Id";
+                type uint32 {
+                    range "2..4094";
+                }
+                mandatory true;
+            }
+
+            list device {
+                tailf:info "Layer 3 Switch";
+                key "name";
+
+                leaf name {
+                    tailf:info "Switch Name";
+                    type leafref {
+                        path "/ncs:devices/ncs:device/ncs:name";
+                    }
+                    must "starts-with(current(), 'CE')" {
+                        error-message
+                          "Switch name should start with CE";
+                    }
+                }
+
+                leaf ip-address {
+                    tailf:info "Unique IP Address";
+                    type inet:ip-prefix;
+                }
+
+                list interface {
+                    key "intf-type intf-id";
+
+                    leaf intf-type {
+                        tailf:info "Interface type can be FastEthernet | GigabitEthernet";
+                        type enumeration {
+                            enum FastEthernet;
+                            enum GigabitEthernet;
+                        }
+                    }
+
+                    leaf intf-id {
+                        tailf:info "Interface Id ex. 1/1 1/2 etc.";
+                        type string {
+                            pattern
+                              "1/[1-9][0-9]{0,1}";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
