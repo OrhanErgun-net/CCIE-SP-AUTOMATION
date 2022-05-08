@@ -1,2 +1,2 @@
 # CCIE-SP-AUTOMATION
-This is the repository for the CCIE Enterprise Infrastructure Automation Module for the CCIE Enterprise Infrastructure course. 
+This is the repository for the CCIE Service Provider Automation Module for the CCIE Service Provider Automation course. 
