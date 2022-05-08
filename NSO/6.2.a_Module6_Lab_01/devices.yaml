@@ -1,0 +1,45 @@
+---
+
+   - name: PE1
+     address: 127.0.0.1
+     ned: cisco-iosxr-cli-3.5
+     port: 10022
+     desc: Device created by maagic_create_device.py
+     auth: default
+
+   - name: PE2
+     address: 127.0.0.1
+     ned: cisco-iosxr-cli-3.5
+     port: 10023
+     desc: Device created by maagic_create_device.py
+     auth: default
+
+   - name: PE3
+     address: 127.0.0.1
+     ned: cisco-iosxr-cli-3.5
+     port: 10024
+     desc: Device created by maagic_create_device.py
+     auth: default
+
+   - name: PE4
+     address: 127.0.0.1
+     ned: cisco-iosxr-cli-3.5
+     port: 10025
+     desc: Device created by maagic_create_device.py
+     auth: default
+
+   - name: CE1
+     address: 127.0.0.1
+     ned: cisco-ios-cli-3.8
+     port: 10026
+     desc: Device created by maagic_create_device.py
+     auth: default
+
+   - name: CE2
+     address: 127.0.0.1
+     ned: cisco-ios-cli-3.8
+     port: 10027
+     desc: Device created by maagic_create_device.py
+     auth: default
+
+...
